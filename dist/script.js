@@ -68,7 +68,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": function() { return /* binding */ Slider; }
 /* harmony export */ });
 class Slider {
-  constructor(page, btns) {
+  constructor(_ref) {
+    let {
+      page = "",
+      btns = "",
+      next = "",
+      prev = ""
+    } = _ref;
     this.page = document.querySelector(page);
     this.slides = Array.from(this.page.children);
     this.btns = document.querySelectorAll(btns);
