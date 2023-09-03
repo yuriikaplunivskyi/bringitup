@@ -57,10 +57,10 @@ class VideoPlayer {
 
 /***/ }),
 
-/***/ "./src/js/modules/slider.js":
-/*!**********************************!*\
-  !*** ./src/js/modules/slider.js ***!
-  \**********************************/
+/***/ "./src/js/modules/slider/slider.js":
+/*!*****************************************!*\
+  !*** ./src/js/modules/slider/slider.js ***!
+  \*****************************************/
 /***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
 
 __webpack_require__.r(__webpack_exports__);
@@ -68,13 +68,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": function() { return /* binding */ Slider; }
 /* harmony export */ });
 class Slider {
-  constructor(_ref) {
+  constructor() {
     let {
       page = "",
       btns = "",
       next = "",
       prev = ""
-    } = _ref;
+    } = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
     this.page = document.querySelector(page);
     this.slides = Array.from(this.page.children);
     this.btns = document.querySelectorAll(btns);
@@ -190,12 +190,12 @@ var __webpack_exports__ = {};
   !*** ./src/js/main.js ***!
   \************************/
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _modules_slider__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./modules/slider */ "./src/js/modules/slider.js");
+/* harmony import */ var _modules_slider_slider__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./modules/slider/slider */ "./src/js/modules/slider/slider.js");
 /* harmony import */ var _modules_playVideo__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./modules/playVideo */ "./src/js/modules/playVideo.js");
 
 
 window.addEventListener('DOMContentLoaded', () => {
-  const slider = new _modules_slider__WEBPACK_IMPORTED_MODULE_0__["default"]('.page', '.next');
+  const slider = new _modules_slider_slider__WEBPACK_IMPORTED_MODULE_0__["default"]('.page', '.next');
   slider.render();
   const player = new _modules_playVideo__WEBPACK_IMPORTED_MODULE_1__["default"]('.showup .play', '.overlay');
   player.init();
