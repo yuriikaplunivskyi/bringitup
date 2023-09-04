@@ -133,10 +133,10 @@ __webpack_require__.r(__webpack_exports__);
 class Slider {
   constructor() {
     let {
-      container = "",
-      btns = "",
-      next = "",
-      prev = ""
+      container = null,
+      btns = null,
+      next = null,
+      prev = null
     } = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
     this.page = document.querySelector(page);
     this.slides = Array.from(this.page.children);
