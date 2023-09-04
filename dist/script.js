@@ -70,8 +70,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _slider__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./slider */ "./src/js/modules/slider/slider.js");
 
 class MainSlider extends _slider__WEBPACK_IMPORTED_MODULE_0__["default"] {
-  constructor(page, btns) {
-    super(page, btns);
+  constructor(btns) {
+    super(btns);
   }
   showSlides(n) {
     if (n > this.slides.length) {
@@ -133,7 +133,7 @@ __webpack_require__.r(__webpack_exports__);
 class Slider {
   constructor() {
     let {
-      page = "",
+      container = "",
       btns = "",
       next = "",
       prev = ""
