@@ -1,7 +1,7 @@
 import Slider from "./slider";
 
 export default class MainSlider extends Slider {
-    constructor( btns) {
+    constructor(btns) {
         super(btns)
     }
 
