@@ -9,7 +9,7 @@ export default class VideoPlayer {
         this.btns.forEach(btn => {
             btn.addEventListener('click', () => {
 
-                if ( document.querySelector('iframe#iframe')) {
+                if ( document.querySelector('iframe#frame')) {
                     this.overlay.style.display = 'flex';
                 } else {
                     const path = btn.getAttribute('data-url');
@@ -31,7 +31,7 @@ export default class VideoPlayer {
         this.player = new YT.Player('frame', {
             height: '100%',
             width: '100%',
-            videoId: `$${url}`
+            videoId: `${url}`
         });
 
         console.log(this.player)

@@ -1,6 +1,6 @@
-import MainSlider from "./modules/slider/slider-main";
-import MiniSlider from "./modules/slider/slider-mini";
-import VideoPlayer from "./modules/playVideo";
+import MainSlider from './modules/slider/slider-main';
+import MiniSlider from './modules/slider/slider-mini';
+import VideoPlayer from './modules/playVideo';
 
 window.addEventListener('DOMContentLoaded', () => {
     const slider = new MainSlider({btns: '.next', container: '.page'});
@@ -11,7 +11,7 @@ window.addEventListener('DOMContentLoaded', () => {
         prev: '.showup__prev',
         next: '.showup__next',
         activeClass: 'card-active',
-        autoplay: true
+        animate: true
     });
     showUpSlider.init();
 
@@ -20,7 +20,8 @@ window.addEventListener('DOMContentLoaded', () => {
         prev: '.modules__info-btns .slick-prev',
         next: '.modules__info-btns .slick-next',
         activeClass: 'card-active',
-        animate: true
+        animate: true,
+        autoplay: true
     });
     modulesSlider.init();
 

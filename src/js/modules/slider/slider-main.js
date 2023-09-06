@@ -1,8 +1,8 @@
-import Slider from "./slider";
+import Slider from './slider';
 
 export default class MainSlider extends Slider {
     constructor(btns) {
-        super(btns)
+        super(btns);
     }
 
     showSlides(n) {
@@ -17,7 +17,7 @@ export default class MainSlider extends Slider {
         try {
             this.hanson.style.opacity = '0';
 
-            if (n === 3) {
+            if (n == 3){
                 this.hanson.classList.add('animated');
                 setTimeout(() => {
                     this.hanson.style.opacity = '1';
@@ -26,7 +26,7 @@ export default class MainSlider extends Slider {
             } else {
                 this.hanson.classList.remove('slideInUp');
             }
-        } catch(e) {}
+        }catch(e){}
 
         this.slides.forEach(slide => {
             slide.style.display = 'none';
@@ -42,8 +42,7 @@ export default class MainSlider extends Slider {
     render() {
         try {
             this.hanson = document.querySelector('.hanson');
-        } catch(e) {}
-
+        } catch(e){}
 
         this.btns.forEach(item => {
             item.addEventListener('click', () => {

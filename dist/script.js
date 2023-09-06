@@ -21,7 +21,7 @@ class VideoPlayer {
   bindTriggers() {
     this.btns.forEach(btn => {
       btn.addEventListener('click', () => {
-        if (document.querySelector('iframe#iframe')) {
+        if (document.querySelector('iframe#frame')) {
           this.overlay.style.display = 'flex';
         } else {
           const path = btn.getAttribute('data-url');
@@ -40,7 +40,7 @@ class VideoPlayer {
     this.player = new YT.Player('frame', {
       height: '100%',
       width: '100%',
-      videoId: `$${url}`
+      videoId: `${url}`
     });
     console.log(this.player);
     this.overlay.style.display = 'flex';
@@ -82,7 +82,7 @@ class MainSlider extends _slider__WEBPACK_IMPORTED_MODULE_0__["default"] {
     }
     try {
       this.hanson.style.opacity = '0';
-      if (n === 3) {
+      if (n == 3) {
         this.hanson.classList.add('animated');
         setTimeout(() => {
           this.hanson.style.opacity = '1';
@@ -134,31 +134,50 @@ __webpack_require__.r(__webpack_exports__);
 
 class MiniSlider extends _slider__WEBPACK_IMPORTED_MODULE_0__["default"] {
   constructor(container, next, prev, activeClass, animate, autoplay) {
-    super(container, next, prev);
+    super(container, next, prev, activeClass, animate, autoplay);
   }
   decorizeSlides() {
     this.slides.forEach(slide => {
       slide.classList.remove(this.activeClass);
       if (this.animate) {
-        this.slides[0].querySelector('.card__title').style.opacity = '0.4';
-        this.slides[0].querySelector('.card__controls-arrow').style.opacity = '0';
+        slide.querySelector('.card__title').style.opacity = '0.4';
+        slide.querySelector('.card__controls-arrow').style.opacity = '0';
       }
     });
-    this.slides[0].classList.add(this.activeClass);
+    if (!this.slides[0].closest('button')) {
+      this.slides[0].classList.add(this.activeClass);
+    }
     if (this.animate) {
-      slides.querySelector('.card__title').style.opacity = '1';
-      slides.querySelector('.card__controls-arrow').style.opacity = '1';
+      this.slides[0].querySelector('.card__title').style.opacity = '1';
+      this.slides[0].querySelector('.card__controls-arrow').style.opacity = '1';
+    }
+  }
+  nextSlide() {
+    if (this.slides[1].tagName == "BUTTON" && this.slides[2].tagName == "BUTTON") {
+      this.container.appendChild(this.slides[0]); // Slide
+      this.container.appendChild(this.slides[1]); // Btn
+      this.container.appendChild(this.slides[2]); // Btn
+      this.decorizeSlides();
+    } else if (this.slides[1].tagName == "BUTTON") {
+      this.container.appendChild(this.slides[0]); // Slide
+      this.container.appendChild(this.slides[1]); // Btn
+      this.decorizeSlides();
+    } else {
+      this.container.appendChild(this.slides[0]);
+      this.decorizeSlides();
     }
   }
   bindTriggers() {
-    this.next.addEventListener('click', () => {
-      this.container.appendChild(this.slides[0]);
-      this.decorizeSlides();
-    });
+    this.next.addEventListener('click', () => this.nextSlide());
     this.prev.addEventListener('click', () => {
-      let active = this.slides[this.slides.length - 1];
-      this.container.insertBefore(active, this.slides[0]);
-      this.decorizeSlides();
+      for (let i = this.slides.length - 1; i > 0; i--) {
+        if (this.slides[i].tagName !== "BUTTON") {
+          let active = this.slides[i];
+          this.container.insertBefore(active, this.slides[0]);
+          this.decorizeSlides();
+          break;
+        }
+      }
     });
   }
   init() {
@@ -170,6 +189,9 @@ class MiniSlider extends _slider__WEBPACK_IMPORTED_MODULE_0__["default"] {
         `;
     this.bindTriggers();
     this.decorizeSlides();
+    if (this.autoplay) {
+      setInterval(() => this.nextSlide(), 5000);
+    }
   }
 }
 
@@ -290,7 +312,7 @@ window.addEventListener('DOMContentLoaded', () => {
     prev: '.showup__prev',
     next: '.showup__next',
     activeClass: 'card-active',
-    autoplay: true
+    animate: true
   });
   showUpSlider.init();
   const modulesSlider = new _modules_slider_slider_mini__WEBPACK_IMPORTED_MODULE_1__["default"]({
@@ -298,7 +320,8 @@ window.addEventListener('DOMContentLoaded', () => {
     prev: '.modules__info-btns .slick-prev',
     next: '.modules__info-btns .slick-next',
     activeClass: 'card-active',
-    animate: true
+    animate: true,
+    autoplay: true
   });
   modulesSlider.init();
   const feedSlider = new _modules_slider_slider_mini__WEBPACK_IMPORTED_MODULE_1__["default"]({
